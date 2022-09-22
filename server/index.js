@@ -32,7 +32,7 @@ app.get('/',(req,res)=>{
     })
 })
 app.get('/',(req,res)=>{
-    console.log('get request');
+    console.log('App is Running');
     res.send('get request');
 })
 app.post('/students',(req,res)=>{
