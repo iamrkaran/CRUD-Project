@@ -19,9 +19,6 @@ mongoose.connection.on('error',()=>{
 //middleware
 app.use(cors())
 app.use(express.json())
-app.get('/',(req,res)=>{
-    res.send('hello')
-    });
 //routs
 app.get('/',(req,res)=>{
     Student.find().exec()
@@ -34,9 +31,10 @@ app.get('/',(req,res)=>{
         res.status(500).send(err);
     })
 })
-
-
-
+app.get('/',(req,res)=>{
+    console.log('get request');
+    res.send('get request');
+})
 app.post('/students',(req,res)=>{
     console.log(req.body.firstname);
     console.log(req.body.lastname);
