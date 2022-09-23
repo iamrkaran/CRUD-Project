@@ -1,13 +1,12 @@
-//imports
 const express= require('express')
 const mongoose =require('mongoose')
 const cors =require('cors')
 const bodyParser=require('body-parser')
 const app=express()
 const Student =require('./modles/Students')
-const Students = require('./modles/Students')
+// const Students = require('./modles/Students')
 //db conn
-mongoose.Promise=global.Promise;
+// mongoose.Promise=global.Promise;
 mongoose.connect('mongodb+srv://abc:123@cluster0.kcyrqot.mongodb.net/students?retryWrites=true&w=majority')
 
 mongoose.connection.on('connected',()=>{
@@ -19,9 +18,6 @@ mongoose.connection.on('error',()=>{
 //middleware
 app.use(cors())
 app.use(express.json())
-app.get('/',(req,res)=>{
-    res.send('hello')
-    });
 //routs
 app.get('/',(req,res)=>{
     Student.find().exec()
@@ -34,9 +30,10 @@ app.get('/',(req,res)=>{
         res.status(500).send(err);
     })
 })
-
-
-
+app.get('/',(req,res)=>{
+    console.log('get request');
+    res.send('get request');
+})
 app.post('/students',(req,res)=>{
     console.log(req.body.firstname);
     console.log(req.body.lastname);
