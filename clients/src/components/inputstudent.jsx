@@ -16,7 +16,7 @@ class Inputstudent extends React.Component {
     }
     handleSubmit = () => {
         if (this.state.firstname != '' && this.state.lastname != '', this.state.place != '') {
-            axios.post('http://localhost:5000/students', this.state)
+            axios.post('https://abc-fgh.herokuapp.com/', this.state)
                 .then(res => {
                     console.log('successfully posted');
                     this.setState({ firstname: '', lastname: '', place: '' });
