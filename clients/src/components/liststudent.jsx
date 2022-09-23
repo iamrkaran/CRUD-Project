@@ -25,7 +25,7 @@ const Liststudent = () => {
   });
 
   const getStudents = () => {
-    axios.get("http://localhost:5000/").then((res) => {
+    axios.get("https://abc-fgh.herokuapp.com/").then((res) => {
       console.log(res);
       setData(() => res.data);
     });
@@ -35,7 +35,7 @@ const Liststudent = () => {
   }, []);
 
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:5000/students/${id}`).then((res) => {
+    axios.delete(`https://abc-fgh.herokuapp.com/students/${id}`).then((res) => {
       console.log(res);
       window.location = "/";
     });
@@ -63,7 +63,7 @@ const Liststudent = () => {
 
   const handleModalUpdate = () => {
     axios
-      .put(`http://localhost:5000/students/${state.uid}`, {
+      .put(`https://abc-fgh.herokuapp.com/students/${state.uid}`, {
         firstname: state.ufirstname,
         lastname: state.ulastname,
         place: state.uplace,
