@@ -4,17 +4,14 @@ const cors =require('cors')
 const bodyParser=require('body-parser')
 const app=express()
 const Student =require('./modles/Students')
-// const Students = require('./modles/Students')
-//db conn
-// mongoose.Promise=global.Promise;
-mongoose.connect('mongodb+srv://abc:123@cluster0.kcyrqot.mongodb.net/students?retryWrites=true&w=majority')
 
-mongoose.connection.on('connected',()=>{
-    console.log('Database connected');
-})
-mongoose.connection.on('error',()=>{
-    console.log('error occured')
-})
+const CONNECTION_URL="mongodb+srv://abc:123@cluster0.kcyrqot.mongodb.net/students?retryWrites=true&w=majority"
+const PORT = process.env.PORT|| 5000;
+
+mongoose.connect(CONNECTION_URL)
+  .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
+  .catch((error) => console.log(`${error} did not connect`));
+
 //middleware
 app.use(cors())
 app.use(express.json())
@@ -30,10 +27,7 @@ app.get('/',(req,res)=>{
         res.status(500).send(err);
     })
 })
-app.get('/',(req,res)=>{
-    console.log('get request');
-    res.send('get request');
-})
+
 app.post('/students',(req,res)=>{
     console.log(req.body.firstname);
     console.log(req.body.lastname);
@@ -82,6 +76,6 @@ app.put('/students/:id', (req, res) => {
     })
   })
 //server
-app.listen(5000,()=>{
-    console.log('Server was connected on Port :5000');
-})
+// app.listen(5000,()=>{
+//     console.log('Server was connected on Port :5000');
+// })
