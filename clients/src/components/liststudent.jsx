@@ -94,15 +94,15 @@ const Liststudent = () => {
             </h4>
 
             <div className="container" style={{ display: "inline" }}>
-              <Button
-              
+              <button
+              className="btn btn-success"
                 variant="primary"
                 onClick={() =>
                   handleUpdate(std._id, std.firstname, std.lastname, std.place)
                 }
               >
                 UPDATE
-              </Button>
+              </button>
 
               <button
                 style={{ marginLeft: "20px" }}
@@ -116,7 +116,7 @@ const Liststudent = () => {
 
           <Modal show={show} onHide={handleClose} animation={false}>
             <Modal.Header closeButton>
-              <Modal.Title>Modal heading</Modal.Title>
+              <Modal.Title>Update Content</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <Form>
