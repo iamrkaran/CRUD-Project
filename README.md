@@ -28,3 +28,8 @@ Run Project
   cd clients
   npm run dev
 ```
+git Commit 
+```bash
+  git commit -m [branchName]
+```
+make pull request with details
