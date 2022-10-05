@@ -25,7 +25,7 @@ Install my-project with npm
 ```
 Run Project
 ```bash
-  cd clients
+  cd clients && npm install 
   npm run dev
 ```
 git Commit 
