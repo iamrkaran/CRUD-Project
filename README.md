@@ -30,6 +30,6 @@ Run Project
 ```
 git Commit 
 ```bash
-  git commit -m [branchName]
+  git commit -m "Commit message."  
 ```
 make pull request with details
