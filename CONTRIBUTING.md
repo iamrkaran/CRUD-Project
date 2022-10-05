@@ -15,6 +15,8 @@ It has features of Update data, Delete data, Create data.
 ## Authors
 
 - [@iamClutchX](https://www.github.com/iamClutchX)
+
+## Contributors
 - [@TemitopeAgbaje](https://www.github.com/TemitopeAgbaje)
 
 
