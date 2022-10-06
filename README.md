@@ -3,7 +3,7 @@
 
 CRUD Project using ```React.js Mongo.db Express.js Node.js Vite.js```
 
-it has feature of Update Data Delete Data Create  Data. 
+It has features of Update data, Delete data, Create data. 
 
 
 ## Acknowledgements
@@ -17,6 +17,8 @@ it has feature of Update Data Delete Data Create  Data.
 
 
 ## Installation
+
+Fork the repository 
 
 Install my-project with npm
 ```bash
