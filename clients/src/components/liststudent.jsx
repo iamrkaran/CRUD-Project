@@ -35,7 +35,7 @@ const Liststudent = () => {
   }, []);
 
   const handleDelete = (id) => {
-    axios.delete(`https://real-dove-lab-coat.cyclic.app/${id}`).then((res) => {
+    axios.delete(`https://real-dove-lab-coat.cyclic.app/students/${id}`).then((res) => {
       console.log(res);
       window.location = "/";
     });
@@ -63,7 +63,7 @@ const Liststudent = () => {
 
   const handleModalUpdate = () => {
     axios
-      .put(`https://real-dove-lab-coat.cyclic.app/${state.uid}`, {
+      .put(`https://real-dove-lab-coat.cyclic.app/students/${state.uid}`, {
         firstname: state.ufirstname,
         lastname: state.ulastname,
         place: state.uplace,
