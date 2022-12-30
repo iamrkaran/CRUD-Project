@@ -35,7 +35,7 @@ const Liststudent = () => {
   }, []);
 
   const handleDelete = (id) => {
-    axios.delete(`https://abc-fgh.herokuapp.com/students/${id}`).then((res) => {
+    axios.delete(`https://real-dove-lab-coat.cyclic.app/${id}`).then((res) => {
       console.log(res);
       window.location = "/";
     });
@@ -63,7 +63,7 @@ const Liststudent = () => {
 
   const handleModalUpdate = () => {
     axios
-      .put(`https://abc-fgh.herokuapp.com/students/${state.uid}`, {
+      .put(`https://real-dove-lab-coat.cyclic.app/${state.uid}`, {
         firstname: state.ufirstname,
         lastname: state.ulastname,
         place: state.uplace,
