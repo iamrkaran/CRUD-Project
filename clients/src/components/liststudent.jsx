@@ -25,7 +25,7 @@ const Liststudent = () => {
   });
 
   const getStudents = () => {
-    axios.get("https://abc-fgh.herokuapp.com/").then((res) => {
+    axios.get("https://real-dove-lab-coat.cyclic.app/").then((res) => {
       console.log(res);
       setData(() => res.data);
     });
