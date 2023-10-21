@@ -1,81 +1,86 @@
-const express= require('express')
-const mongoose =require('mongoose')
-const cors =require('cors')
-const bodyParser=require('body-parser')
-const app=express()
-const Student =require('./modles/Students')
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const app = express();
+const Student = require('./models/Students');
 
-const CONNECTION_URL="mongodb+srv://abc:123@cluster0.kcyrqot.mongodb.net/students?retryWrites=true&w=majority"
-const PORT = process.env.PORT|| 5000;
+const CONNECTION_URL = "mongodb+srv://abc:123@cluster0.kcyrqot.mongodb.net/students?retryWrites=true&w=majority";
+const PORT = process.env.PORT || 5000;
 
-mongoose.connect(CONNECTION_URL)
-  .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
-  .catch((error) => console.log(`${error} did not connect`));
-
-//middleware
-app.use(cors())
-app.use(express.json())
-//routs
-app.get('/',(req,res)=>{
-    Student.find().exec()
-    .then(result=>{
-        console.log(result);
-        res.status(200).send(result);
-    })
-    .catch(err=>{
-        console.log(err);
-        res.status(500).send(err);
-    })
+// Connect to MongoDB
+mongoose.connect(CONNECTION_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 })
-
-app.post('/students',(req,res)=>{
-    console.log(req.body.firstname);
-    console.log(req.body.lastname);
-    console.log(req.body.place);
-    const students=new Student ({
-        _id:new mongoose.Types.ObjectId,
-        firstname:req.body.firstname,
-        lastname:req.body.lastname,
-        place:req.body.place,
-    });
-    students.save()
-    .then(result=>{
-        console.log(result);
-        res.status(200).json({msg:"succesfully submitted"});
-    })
-    .catch(err=>{
-        console.log(err);
-        res.status(500).json({msg:"error occurd"});
-    })
-})
-app.delete('/students/:id',(req,res)=>{
-    const id=req.params.id;
-    Student.remove({_id:id},(err,result)=>{
-        if(err){
-            console.log(err);
-            res.status(500).send("error occurd");
-        }
-        else {
-            res.status(200).json({msg:"successfully deleted"});
-        }
-    })
-})
-
-app.put('/students/:id', (req, res) => {
-    const firstname=req.body.firstname;
-    const lastname =req.body.lastname;
-    const place= req.body.place;
-    const id= req.params.id;
-    Student.updateOne({_id:id},{$set:{firstname:firstname,lastname:lastname,place:place}})
-    .then(result=>{
-        console.log(result);
-        res.status(200).json({msg:"succesfully submitted"});
-    })
-    .catch(err=>{
-        res.status(500).json({msg:"error occurd"});
-    })
+  .then(() => {
+    app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`));
   })
-//server
-// app.listen(5000,()=>{
-//     console.log('Server was connected on Port :5000');
-// })
+  .catch((error) => {
+    console.error(`Failed to connect to the database: ${error}`);
+    process.exit(1);
+  });
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Routes
+app.get('/', async (req, res) => {
+  try {
+    const students = await Student.find().exec();
+    console.log(students);
+    res.status(200).send(students);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send(err);
+  }
+});
+
+app.post('/students', async (req, res) => {
+  try {
+    const { firstname, lastname, place } = req.body;
+    const student = new Student({
+      _id: new mongoose.Types.ObjectId(),
+      firstname,
+      lastname,
+      place,
+    });
+    const result = await student.save();
+    console.log(result);
+    res.status(200).json({ msg: "Successfully submitted" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: "An error occurred" });
+  }
+});
+
+app.delete('/students/:id', async (req, res) => {
+  const id = req.params.id;
+  try {
+    const result = await Student.deleteOne({ _id: id });
+    if (result.deletedCount > 0) {
+      res.status(200).json({ msg: "Successfully deleted" });
+    } else {
+      res.status(404).json({ msg: "Student not found" });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: "An error occurred" });
+  }
+});
+
+app.put('/students/:id', async (req, res) => {
+  try {
+    const { firstname, lastname, place } = req.body;
+    const id = req.params.id;
+    const result = await Student.updateOne({ _id: id }, { $set: { firstname, lastname, place } });
+    if (result.nModified > 0) {
+      res.status(200).json({ msg: "Successfully submitted" });
+    } else {
+      res.status(404).json({ msg: "Student not found" });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: "An error occurred" });
+  }
+});
