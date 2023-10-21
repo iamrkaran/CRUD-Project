@@ -1,66 +1,87 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Cursive, sans-serif, Gugi;
+}
+
+.container {
+  padding: 100px;
+}
+
+.wrapper {
+  padding: 40px;
+  box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
+  backdrop-filter: blur(14px);
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding-bottom: 80px;
+}
+
+.heading {
+  font-weight: 700;
+  color: whitesmoke;
+  padding: 20px;
+}
+
 .regalign {
-    margin: 0;
-    background-color: brown;
-    width: 500px;
-    padding: 20px;
+  margin: 0;
+  background-color: brown;
+  width: 500px;
+  padding: 20px;
 }
 
 .control {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 #reg-input {
-    font-size: 15px;
-    font-family: Cursive, sans-serif, Gugi;
-    border-radius: 10px;
-    
-    margin-top: 20px;
-    padding: 20px;
-    background-color: aliceblue;
+  font-size: 15px;
+  border-radius: 10px;
+
+  margin-top: 20px;
+  padding: 20px;
+  background-color: aliceblue;
 }
 
 #btn-reg {
-    border-radius: 10px;
-    font-size: 19px;
-    font-family: sans-serif, Gugi;
-    outline: none;
-    color: white;
-    background-color: #000066;
-  
-    margin-top: 20px;
+  border-radius: 10px;
+  font-size: 19px;
+  font-family: sans-serif, Gugi;
+  outline: none;
+  color: white;
+  background-color: #000066;
+
+  margin-top: 20px;
 }
 #btn-reg:hover {
-    background-color: #08ab9d;
+  background-color: #08ab9d;
 }
 
 .green-color {
-    color: green;
-    font-family: cursive;
+  color: green;
+  font-family: cursive;
 }
 
 #card {
-    border-radius:10px ;
-    padding: 15px;
-    background-color: whitesmoke;
-    display: inline-flex;
-    margin-left: 15px;
-    margin-top: 10px;    
+  border-radius: 10px;
+  padding: 15px;
+  background-color: whitesmoke;
+  display: inline-flex;
+  margin-left: 15px;
+  margin-top: 10px;
 }
 
 #card:hover {
-    background-color: #c3a9a9bd;
+  background-color: #c3a9a9bd;
 }
 
 .col-md-6 {
-    margin: auto;
-    
- }
-@media screen and (max-width: 500px) {
-    .col-md-6 {
-        margin: auto;
-        width: auto;
-        
-        
-     }
+  margin: auto;
 }
-    
+@media screen and (max-width: 500px) {
+  .col-md-6 {
+    margin: auto;
+    width: auto;
+  }
+}
