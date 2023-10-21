@@ -1,0 +1,11 @@
+{
+  "name": "crud-project",
+  "version": "1.0.0",
+  "description": "CRUD Project using ```React.js Mongo.db Express.js Node.js Vite.js```",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
